@@ -239,8 +239,10 @@ function closePopup() {
     <h2>¡OBTÉN UN 50% DE DESCUENTO EXTRA!</h2>
     <p>Introduce tu email para recibir tu código promocional.</p>
     
-    <form action="TU_ENLACE_DE_FORMSPREE" method="POST">
-      <input type="email" name="email" placeholder="Email" required>
+   <form action="https://formspree.io/f/xvzdrynv" method="POST">
+      <input type="hidden" name="_next" value="https://eclipse.endracompany.com/index.html">
+      <input type="hidden" name="_subject" value="Cupón 50% desde Popup">
+      <input type="email" name="email" placeholder="Tu Email" required>
       <button type="submit" class="popup-submit">¡Quiero mi descuento!</button>
     </form>
     
