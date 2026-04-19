@@ -64,6 +64,69 @@
   .footer-cta p { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-top: 0.8rem; }
   .cta-btn-gold { display: inline-block; background: linear-gradient(135deg, #f59e0b, #ef4444); color: #fff; font-size: 1rem; font-weight: 600; padding: 1rem 2.4rem; border-radius: 50px; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(245,158,11,0.4); transition: transform 0.2s; }
   .cta-btn-gold:hover { transform: scale(1.04); }
+
+  /* Diseño del Popup */
+.popup-overlay {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  position: relative;
+  color: #1a1a1a;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.popup-content h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #000; font-weight: 800; }
+
+.popup-content input {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-submit {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.no-thanks {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  font-size: 12px;
+  margin-top: 15px;
+  cursor: pointer;
+  color: #666;
+}
 </style>
 
 <div class="page">
@@ -150,6 +213,32 @@
     document.getElementById('cd-s').textContent=Math.floor((diff%60000)/1000);
   }
   updateCountdown();setInterval(updateCountdown,1000);
+
+  // Mostrar el popup a los 3 segundos de entrar
+window.onload = function() {
+  setTimeout(function() {
+    document.getElementById('popup-overlay').style.display = 'flex';
+  }, 3000); 
+};
+
+// Función para cerrar el popup
+function closePopup() {
+  document.getElementById('popup-overlay').style.display = 'none';
+}
 </script>
+<div id="popup-overlay" class="popup-overlay">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup()">&times;</button>
+    <h2>¡OBTÉN UN 50% DE DESCUENTO EXTRA!</h2>
+    <p>Introduce tu email para recibir tu código promocional.</p>
+    
+    <form action="TU_ENLACE_DE_FORMSPREE" method="POST">
+      <input type="email" name="email" placeholder="Email" required>
+      <button type="submit" class="popup-submit">¡Quiero mi descuento!</button>
+    </form>
+    
+    <button class="no-thanks" onclick="closePopup()">Prefiero pagar el precio total</button>
+  </div>
+</div>
 </body>
 </html>
