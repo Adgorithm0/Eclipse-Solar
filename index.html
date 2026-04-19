@@ -215,11 +215,18 @@
   updateCountdown();setInterval(updateCountdown,1000);
 
   // Mostrar el popup a los 3 segundos de entrar
-window.onload = function() {
-  setTimeout(function() {
-    document.getElementById('popup-overlay').style.display = 'flex';
-  }, 3000); 
-};
+// Mostrar el popup a los 3 segundos SOLO la primera vez
+  window.onload = function() {
+    if (!localStorage.getItem('popupMostrado')) {
+      setTimeout(function() {
+        const popup = document.getElementById('popup-overlay');
+        if (popup) {
+          popup.style.display = 'flex';
+          localStorage.setItem('popupMostrado', 'true');
+        }
+      }, 3000); 
+    }
+  };
 
 // Función para cerrar el popup
 function closePopup() {
